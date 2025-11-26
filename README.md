@@ -90,3 +90,22 @@ start explorer.exe
 
 echo ریست کامل انجام شد. سیستم را ریستارت کنید.
 pause
+
+
+@echo off
+echo ریست کردن OpenWith و کش Explorer...
+
+:: پاک کردن OpenWith کاربر برای exe, bat, com, pif
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.bat" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.com" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pif" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.cmd" /f
+
+:: پاک کردن کش آیکن‌ها
+taskkill /f /im explorer.exe
+del /a /q "%localappdata%\IconCache.db"
+start explorer.exe
+
+echo ریست کامل انجام شد. سیستم را ریستارت کنید.
+pause
