@@ -109,3 +109,24 @@ start explorer.exe
 
 echo ریست کامل انجام شد. سیستم را ریستارت کنید.
 pause
+
+......
+
+
+@echo off
+echo Resetting OpenWith and Explorer icon cache...
+
+:: Delete OpenWith settings for exe, bat, com, pif, cmd
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.bat" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.com" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pif" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.cmd" /f
+
+:: Clear icon cache
+taskkill /f /im explorer.exe
+del /a /q "%localappdata%\IconCache.db"
+start explorer.exe
+
+echo Reset complete. Please restart your system.
+pause
