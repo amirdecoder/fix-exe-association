@@ -24,3 +24,9 @@ if Not work
 
 assoc .exe=exefile
 ftype exefile="%1" %*
+
+.
+
+reg add "HKCR\.exe" /ve /d "exefile" /f
+reg add "HKCR\exefile\shell\open\command" /ve /d "\"%1\" %*" /f
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
