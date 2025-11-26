@@ -41,3 +41,11 @@ C:\Windows\System32\reg.exe add "HKCR\.exe" /ve /t REG_SZ /d "exefile" /f
 C:\Windows\System32\reg.exe add "HKCR\exefile\shell\open\command" /ve /t REG_SZ /d "\"%1\" %*" /f
 
 C:\Windows\System32\reg.exe delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
+
+
+
+.....
+
+
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
+
