@@ -17,3 +17,10 @@ Windows Registry Editor Version 5.00
 @="Application"
 
 [-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe]
+
+
+if Not work
+
+
+assoc .exe=exefile
+ftype exefile="%1" %*
