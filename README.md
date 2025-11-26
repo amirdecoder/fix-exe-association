@@ -49,3 +49,44 @@ C:\Windows\System32\reg.exe delete "HKCU\Software\Microsoft\Windows\CurrentVersi
 
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
 
+....
+
+
+reg 
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.exe]
+@="exefile"
+"Content Type"="application/x-msdownload"
+
+[HKEY_CLASSES_ROOT\exefile\shell\open\command]
+@="\"%1\" %*"
+
+[HKEY_CLASSES_ROOT\exefile\shell\runas\command]
+@="\"%1\" %*"
+
+[HKEY_CLASSES_ROOT\exefile]
+@="Application"
+
+
+bat
+
+
+@echo off
+echo ریست کردن OpenWith و کش Explorer...
+
+:: پاک کردن OpenWith کاربر برای exe, bat, com, pif
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.exe" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.bat" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.com" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pif" /f
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.cmd" /f
+
+:: پاک کردن کش آیکن‌ها
+taskkill /f /im explorer.exe
+del /a /q "%localappdata%\IconCache.db"
+start explorer.exe
+
+echo ریست کامل انجام شد. سیستم را ریستارت کنید.
+pause
